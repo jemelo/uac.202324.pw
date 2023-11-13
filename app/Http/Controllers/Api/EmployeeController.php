@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EmployeeResource;
+use App\Http\Resources\EmployeeResourceCollection;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        return new EmployeeResourceCollection(Employee::all());
     }
 
     /**
@@ -29,7 +31,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return new EmployeeResource($employee);
     }
 
     /**
