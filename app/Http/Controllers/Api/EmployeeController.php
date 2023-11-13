@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\EmployeeResourceCollection;
 use App\Models\Employee;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use PHPUnit\TextUI\Exception;
 
 class EmployeeController extends Controller
 {
@@ -29,9 +31,20 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show($employee)
     {
-        return new EmployeeResource($employee);
+        try {
+            $employee = Employee::findOrFail($employee);
+            return new EmployeeResource($employee);
+        } catch (\Exception $e) {
+            if ($e instanceof ModelNotFoundException) {
+                return response()->json(['message' => 'Não encontrado'], 404);
+            }
+
+            return response()->json(['message' => 'Ocorreu um erro de comunicação'], 503);
+        }
+
+
     }
 
     /**
