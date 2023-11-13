@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Auth\Controller;
 use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
