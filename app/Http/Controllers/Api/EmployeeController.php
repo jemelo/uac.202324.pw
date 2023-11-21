@@ -8,6 +8,7 @@ use App\Http\Resources\EmployeeResourceCollection;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PHPUnit\TextUI\Exception;
 
 class EmployeeController extends Controller
@@ -17,6 +18,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->tokenCan('employees:list')) {
+            abort(403);
+        }
+
         return new EmployeeResourceCollection(Employee::paginate(5));
     }
 
@@ -33,6 +38,10 @@ class EmployeeController extends Controller
      */
     public function show($employee)
     {
+        if (!auth()->user()->tokenCan('employees:show')) {
+            abort('403');
+        }
+
         try {
             $employee = Employee::findOrFail($employee);
             return new EmployeeResource($employee);
