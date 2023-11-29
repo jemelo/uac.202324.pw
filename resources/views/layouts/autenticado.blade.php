@@ -19,7 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    @livewireStyles
+    @livewireScripts
 </head>
 
 <body id="page-top">
@@ -113,6 +114,7 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('sbadmin/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('sbadmin/js/demo/chart-pie-demo.js') }}"></script>
+
 
 </body>
 

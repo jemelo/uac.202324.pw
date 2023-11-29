@@ -23,7 +23,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $this->call(DefaultUserSeeder::class);
+
         $this->call(PunchEventTypeSeeder::class);
+        $this->call(DepartmentSeeder::class);
 
         if (App::environment() == 'local') {
             Employee::factory(200)->create();

@@ -37,7 +37,7 @@ class EmployeePolicy
      */
     public function update(User $user, Employee $employee): bool
     {
-        return $user->is_admin /*|| $user->email = 'jose.em.melo@uac.pt'*/;
+        return $user->is_admin;
     }
 
     /**
@@ -45,7 +45,7 @@ class EmployeePolicy
      */
     public function delete(User $user, Employee $employee): bool
     {
-        //
+        return $user->is_admin;
     }
 
     /**
