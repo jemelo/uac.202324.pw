@@ -45,7 +45,7 @@ class EmployeePolicy
      */
     public function delete(User $user, Employee $employee): bool
     {
-        return $user->is_admin;
+        return $user->is_admin == 1;
     }
 
     /**

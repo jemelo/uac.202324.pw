@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PunchEventTypeSeeder::class);
         $this->call(DepartmentSeeder::class);
 
-        if (App::environment() == 'local') {
+        if (App::environment() == 'local' || App::environment() == 'testing') {
             Employee::factory(200)->create();
             PunchEvent::factory(5000)->create();
         }

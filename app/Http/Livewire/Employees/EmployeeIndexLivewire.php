@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Employees;
 
 use App\Models\Employee;
+use App\Services\EmployeeService;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
@@ -45,7 +46,8 @@ class EmployeeIndexLivewire extends Component
     function deleteEmployee(int $id)
     {
         if ($this->employeeId == $id) {
-            Employee::find($id)->delete();
+            $service = new EmployeeService();
+            $service->deleteEmployee(Employee::find($id));
             $this->employeeId = '';
 
         } else {
